@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.12;
 
-import "@uniswap/lib/contracts/interfaces/IUniswapV2Router.sol";
+import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
@@ -128,7 +128,7 @@ contract Compounder is OwnableUpgradeable, PausableUpgradeable {
 			if (underlying != baseToken) {
 				IERC20(underlying).safeApprove(uniRouter, amount);
 				try
-					IUniswapV2Router(uniRouter).swapExactTokensForTokens(
+					IUniswapV2Router02(uniRouter).swapExactTokensForTokens(
 						amount,
 						0,
 						rewardToBaseRoute[underlying],
